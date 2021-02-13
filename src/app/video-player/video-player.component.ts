@@ -26,6 +26,14 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   modelsReady: boolean = false;
   overCanvas: any;
 
+  filters = [{
+    type: 'image',
+    image: 'sunglass.png'
+  }, {
+    type: 'image',
+    image: 'sunglass-2.png'
+  }]
+
   constructor(
     private renderer2: Renderer2,
     private elementRef: ElementRef,
@@ -63,6 +71,13 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
     globalFace.draw.drawDetections(this.overCanvas, resizedDetections);
     globalFace.draw.drawFaceLandmarks(this.overCanvas, resizedDetections);
+
+    const scale = this.width / displaySize.width;
+    console.log(scale);
+
+    // const elementFilterEye = document.querySelector('.filter-eye');
+    // this.renderer2.setStyle(elementFilterEye, 'left', `${eyes.left[0].x * scale}px`);
+    // this.renderer2.setStyle(elementFilterEye, 'top', `${eyes.left[0].y * scale}px`);
   };
 
   checkFace = () => {
